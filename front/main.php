@@ -48,6 +48,7 @@
         4
     </div>
 </div>
+
 <script>
 $(".type").on('click', function() {
     let idx = $(this).index();
