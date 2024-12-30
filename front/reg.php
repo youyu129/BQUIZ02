@@ -1,5 +1,5 @@
 <fieldset style="width:50%;margin:auto;">
-    <legend>會員登入</legend>
+    <legend>會員註冊</legend>
     <div style="color:red">
         *請設定您要註冊的帳號及密碼(最長12個字元)
     </div>
@@ -22,11 +22,55 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="註冊">
-                <input type="reset" value="清除">
+                <input type="button" value="註冊" onclick='reg()'>
+                <input type="button" value="清除" onclick='resetForm()'>
             </td>
             <td></td>
         </tr>
     </table>
-
 </fieldset>
+
+<script>
+function reg() {
+    let user = {
+        acc: $("#acc").val(),
+        pw: $("#pw").val(),
+        pw2: $("#pw2").val(),
+        email: $("#email").val()
+    }
+    // console.log(user);
+    // 用js處理前端簡單的驗證
+    if (user.acc == "" || user.pw == "" || user.pw2 == "" || user.email == "") {
+        alert("不可空白");
+    } else if (user.pw != user.pw2) {
+        alert("密碼錯誤");
+    } else {
+        // AJAX用箭頭函式
+        $.get("./api/chk_acc.php", {
+            acc: user.acc
+        }, (res) => {
+            // console.log("chk_acc => ", res);
+
+            // 資料庫有帳號是1 資料庫沒帳號是0
+            if (parseInt(res) > 0) {
+                alert("帳號重複");
+            } else {
+                $.post("./api/reg.php", user, (res) => {
+                    console.log("reg => ", res)
+                    if (parseInt(res) == 1) {
+                        alert("註冊完成，歡迎加入");
+                    }
+                    // 註冊失敗 題目沒有要求
+                })
+            }
+        })
+    }
+}
+
+function resetForm() {
+    $("#acc").val("")
+    $("#pw").val("")
+    $("#pw2").val("")
+    $("#email").val("")
+}
+</script>

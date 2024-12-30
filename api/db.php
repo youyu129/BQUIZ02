@@ -162,6 +162,7 @@ function to($url){
 }
 
 $Total=new DB('total');
+$User=new DB('users');
 
 // 如果沒來過的人
 if(!isset($_SESSION['view'])){
