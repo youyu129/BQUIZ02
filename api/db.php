@@ -164,6 +164,7 @@ function to($url){
 $Total=new DB('total');
 $User=new DB('users');
 $News=new DB('news');
+$Que=new DB('que');
 
 // 如果沒來過的人
 if(!isset($_SESSION['view'])){
