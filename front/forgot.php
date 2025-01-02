@@ -14,9 +14,20 @@
         </tr>
         <tr>
             <td>
-                <input type="button" value="尋找">
+                <input type="button" value="尋找" onclick="forget()">
             </td>
         </tr>
     </table>
 
 </fieldset>
+
+<script>
+function forget() {
+    let email = $("#email").val()
+    $.get("api/chk_email.php", {
+        email
+    }, (res) => {
+        $("result").html(res);
+    })
+}
+</script>

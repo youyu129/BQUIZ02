@@ -49,7 +49,13 @@ include_once "api/db.php";
                         <marquee behavior="" direction="">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
                     </div>
                     <span style="width:23%; display:inline-block;">
-                        <a href="?do=login">會員登入</a>
+                        <?php
+                        if(!isset($_SESSION['user'])):?>
+                        <a href="index.php?do=login">會員登入</a>
+                        <?php else:?>
+                        歡迎，<?=$_SESSION['user'];?>
+                        <button onclick="logout()">登出</button>
+                        <?php endif;?>
                     </span>
                 </div>
 
