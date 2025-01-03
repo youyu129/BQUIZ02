@@ -42,6 +42,7 @@ $('.type').on('click', function() {
     // $('#type').text($(e.target).text())
     // })
 
+    // <div data=''>是資料賦值的方式
     let type = $(this).data('type')
     getList(type)
 

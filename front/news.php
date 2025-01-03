@@ -25,7 +25,14 @@
         <tr>
             <td><?=$row['title'];?></td>
             <td><?=mb_substr($row['news'],0,25);?>...</td>
-            <td></td>
+            <td>
+                <!-- 登入的才看得到讚 -->
+                <?php
+                if(isset($_SESSION['user'])){
+                    echo "<a href='#' data-id='{$row['id']}' class='like'>讚</a>";
+                }
+                ?>
+            </td>
         </tr>
         <?php endforeach;?>
     </table>
@@ -47,3 +54,19 @@
     </div>
 
 </fieldset>
+
+<script>
+$(".like").on("click", function() {
+    let id = $(this).data('id');
+    let like = $(this).text();
+    switch (
+        like) {
+        case "讚":
+            $(this).text("收回讚");
+            break;
+        case "收回讚":
+            $(this).text("讚");
+            break;
+    }
+})
+</script>
