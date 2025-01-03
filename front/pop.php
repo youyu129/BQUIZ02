@@ -1,6 +1,17 @@
 <style>
 .detail {
+    background: rgba(51, 51, 51, 0.8);
+    color: #FFF;
+    height: 300px;
+    width: 400px;
+    /* fixed 針對可視範圍定位 */
+    /* absolute 針對parent(沒有的話是body)定位 */
+    position: absolute;
+    left: 10px;
+    top: 10px;
     display: none;
+    z-index: 9999;
+    overflow: auto;
 }
 </style>
 
@@ -30,10 +41,13 @@
         foreach($rows as $row):
         ?>
         <tr>
-            <td><?=$row['title'];?></td>
-            <td>
+            <td class='row-title'><?=$row['title'];?></td>
+            <td style="position:relative" class="row-content">
                 <span class="title"><?=mb_substr($row['news'],0,25);?>...</span>
-                <span class="detail"><?=nl2br($row['news']);?>...</span>
+                <span class="detail">
+                    <h2 style="color:skyblue"><?=$News::$type[$row['type']];?></h2>
+                    <?=nl2br($row['news']);?>...
+                </span>
             </td>
             <td>
                 <!-- 登入的才看得到讚 -->
@@ -86,4 +100,22 @@ $(".like").on("click", function() {
         }
     })
 })
+
+$(".row-title").hover(
+    function() {
+        $(this).next().children(".detail").show();
+    },
+    function() {
+        $(this).next().children(".detail").hide();
+    }
+)
+
+$(".row-content").hover(
+    function() {
+        $(this).children(".detail").show();
+    },
+    function() {
+        $(this).children(".detail").hide();
+    }
+)
 </script>
