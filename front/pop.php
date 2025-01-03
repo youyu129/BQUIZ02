@@ -50,6 +50,7 @@
                 </span>
             </td>
             <td>
+                <?=$row['likes'];?>個人說<img src="./icon/02B03.jpg" alt="" style="width:25px">
                 <!-- 登入的才看得到讚 -->
                 <?php
                 if(isset($_SESSION['user'])){
@@ -98,6 +99,7 @@ $(".like").on("click", function() {
                 $(this).text("讚");
                 break;
         }
+        location.reload();
     })
 })
 
