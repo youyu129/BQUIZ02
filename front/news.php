@@ -1,3 +1,9 @@
+<style>
+.detail {
+    display: none;
+}
+</style>
+
 <fieldset>
     <legend>目前位置：首頁 > 最新文章區</legend>
 
@@ -21,8 +27,11 @@
         foreach($rows as $row):
         ?>
         <tr>
-            <td><?=$row['title'];?></td>
-            <td><?=mb_substr($row['news'],0,25);?>...</td>
+            <td class="row-title"><?=$row['title'];?></td>
+            <td>
+                <span class="title"><?=mb_substr($row['news'],0,25);?>...</span>
+                <span class="detail"><?=nl2br($row['news']);?></span>
+            </td>
             <td>
                 <!-- 登入的才看得到讚 -->
                 <?php
@@ -72,5 +81,9 @@ $(".like").on("click", function() {
                 break;
         }
     })
+})
+
+$(".row-title").on('click', function() {
+    $(this).next().children(".title,.detail").toggle();
 })
 </script>

@@ -1,3 +1,9 @@
+<style>
+.detail {
+    display: none;
+}
+</style>
+
 <fieldset>
     <!-- 修改為人氣文章區 -->
     <legend>目前位置：首頁 > 人氣文章區</legend>
@@ -25,7 +31,10 @@
         ?>
         <tr>
             <td><?=$row['title'];?></td>
-            <td><?=mb_substr($row['news'],0,25);?>...</td>
+            <td>
+                <span class="title"><?=mb_substr($row['news'],0,25);?>...</span>
+                <span class="detail"><?=nl2br($row['news']);?>...</span>
+            </td>
             <td>
                 <!-- 登入的才看得到讚 -->
                 <?php
