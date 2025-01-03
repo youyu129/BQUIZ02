@@ -59,4 +59,11 @@ function getList(type) {
     })
 
 }
+
+// 點選標題之後顯示文章內容
+function getPost(id) {
+    $("#postList").load("./api/get_post.php", {
+        id
+    })
+}
 </script>
