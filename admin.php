@@ -55,8 +55,9 @@ include_once "api/db.php";
                         <a href="index.php?do=login">會員登入</a>
                         <?php else:?>
                         歡迎，<?=$_SESSION['user'];?>
-                        <br>
-                        <button onclick="location.href='admin.php'">管理</button>
+                        <?php if($_SESSION['user']=='admin'):?>
+                        <br><button onclick="location.href='admin.php'">管理</button>
+                        <?php endif;?>
                         <button onclick="logout()">登出</button>
                         <?php endif;?>
                     </span>

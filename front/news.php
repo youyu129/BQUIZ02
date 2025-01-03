@@ -1,7 +1,5 @@
 <fieldset>
-    <legend>
-        目前位置：首頁 > 分類網誌 > <span id='type'>健康新知</span>
-    </legend>
+    <legend>目前位置：首頁 > 最新文章區</legend>
 
     <!-- table>(tr>th*3)tr>td*3 -->
     <table style="width:100%">
@@ -29,7 +27,9 @@
                 <!-- 登入的才看得到讚 -->
                 <?php
                 if(isset($_SESSION['user'])){
-                    echo "<a href='#' data-id='{$row['id']}' class='like'>讚</a>";
+                    $chk=$Log->count(['news'=>$row['id'],'user'=>$_SESSION['user']]);
+                    $like=($chk>0)?"收回讚":"讚";
+                    echo "<a href='#' data-id='{$row['id']}' class='like'>$like</a>";
                 }
                 ?>
             </td>
@@ -59,14 +59,18 @@
 $(".like").on("click", function() {
     let id = $(this).data('id');
     let like = $(this).text();
-    switch (
-        like) {
-        case "讚":
-            $(this).text("收回讚");
-            break;
-        case "收回讚":
-            $(this).text("讚");
-            break;
-    }
+
+    $.post("./api/like.php", {
+        id
+    }, () => {
+        switch (like) {
+            case "讚":
+                $(this).text("收回讚");
+                break;
+            case "收回讚":
+                $(this).text("讚");
+                break;
+        }
+    })
 })
 </script>
