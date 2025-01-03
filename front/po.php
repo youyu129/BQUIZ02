@@ -11,13 +11,36 @@
 
     <!-- a*4 -->
     <!-- 1.2.3.4是資料表建立的type欄位 -->
-    <a href="javascript:getList(1)" class='type'>健康新知</a>
-    <a href="javascript:getList(2)" class='type'>菸害防制</a>
-    <a href="javascript:getList(3)" class='type'>癌症防治</a>
-    <a href="javascript:getList(4)" class='type'>慢性病防治</a>
+    <a href="#" class='type'>健康新知</a>
+    <a href="#" class='type'>菸害防制</a>
+    <a href="#" class='type'>癌症防治</a>
+    <a href="#" class='type'>慢性病防治</a>
 </fieldset>
 
 <fieldset style="width:500px;display:inline-block">
     <legend>文章列表</legend>
 
 </fieldset>
+
+<script>
+// 上方目前位置的文字
+// 註冊事件
+
+// 方法一：回呼函式
+$('.type').on('click', function() {
+    // 點下去 this代表那一個a標籤的DOM
+    console.log($(this).text());
+    $('#type').text($(this).text())
+})
+
+// 方法二：箭頭函式
+// $('.type').on('click', (e) => {
+// console.log(e);
+// $('#type').text($(e.target).text())
+// })
+
+// 右方文章列表
+function getList() {
+
+}
+</script>
