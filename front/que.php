@@ -28,7 +28,7 @@
                 if(!isset($_SESSION['user'])){
                     echo "請先登入";
                 }else{
-                    echo "<a href='?do=vote&id=<?={$row['id']}'>我要投票</a>";
+                    echo "<a href='?do=vote&id={$row['id']}'>我要投票</a>";
                 }
                 ?>
             </td>
